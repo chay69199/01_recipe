@@ -2,24 +2,26 @@
 
 # Not Blank Function goes here
 def not_blank (question):
-    error = "you recipe name has numbers in it."
-    has_errors = ""
+    error = "your recipe name has numbers in it."
 
-    valid = False
+    valid =  False  
     while not valid:
         response = input(question)
+        has_errors = ""
 
-       # look at each character in string and if it's a number, complain
+        # look at each character in string and if it's a number, complain
         for letter in response:
-            if letter.isdigit() == True:
+            if letter.isdigit():
                 has_errors = "yes"
                 break
 
-
         if response == "":
+            print("Sorry, this can't be blank")
+            print()
             continue
         elif has_errors != "":
             print(error)
+            print()
             continue
         else:
             return response
@@ -27,6 +29,6 @@ def not_blank (question):
 
 # Main Routine goes here
 
-recipe_name = not_blank("what is the recipe name?")
+recipe_name = not_blank("what is the recipe name? ")
 
-print("You are making{}".format(recipe_name))
+print("You are making {}".format(recipe_name))
