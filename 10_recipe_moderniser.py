@@ -208,7 +208,7 @@ scale_factor = get_sf()
 full_recipe = get_all_ingredients()
 
 # Split each line of the recipe into amount, unit and ingredient...
-mixed_regex = "\{1,3}\s\d{1,3}\/\d{1,3}"
+mixed_regex = "\d{1,3}\s\d{1,3}\/\d{1,3}"
 
 for recipe_line in full_recipe:
     recipe_line = recipe_line.strip()
@@ -245,9 +245,9 @@ for recipe_line in full_recipe:
         unit_ingredient = get_amount[1]
 
     # Get unit and ingredient...
-    get_unit = unit_ingredient.split(" ",1)     # splits text at first space
+    get_unit = unit_ingredient.split(" ", 1)     # splits text at first space
 
-    num_spaces = recipe_line.count("")
+    num_spaces = recipe_line.count(" ")
     if num_spaces > 1:
         # Item has unit and ingredient
         unit = get_unit[0]
@@ -256,7 +256,7 @@ for recipe_line in full_recipe:
 
         # if unit is already in grams,add it to list
         if unit == "g":
-            modernised_recipe.append("{:.0f} g {}".formant(amount, ingredient))
+            modernised_recipe.append("{:.0f} g {}".format(amount, ingredient))
             continue
 
         # convert to mls if possible...
@@ -278,7 +278,7 @@ for recipe_line in full_recipe:
          modernised_recipe.append("{} {}".format(amount, unit_ingredient ))
          continue
 
-    modernised_recipe.append("{} {} {}".format(amount, unit_ingredient, ingredient))
+    # modernised_recipe.append("{} {} {}".format(amount, unit_ingredient, ingredient))
 
 # Put updated ingredient in list
 
